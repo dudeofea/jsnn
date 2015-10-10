@@ -1,0 +1,74 @@
+/*
+*
+*	Main Style File
+*
+*/
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-linear-gradient(0deg, #005C97, #363795);
+  /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(0deg, #005C97, #363795);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(0deg, #005C97, #363795);
+  /* IE10 */
+  background: -o-linear-gradient(0deg, #005C97, #363795);
+  /* Opera 11.10+ */
+  background: linear-gradient(0deg, #005C97, #363795);
+  /* W3C */ }
+
+neuron {
+  display: block;
+  height: 60px;
+  width: 60px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  border-radius: 60px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center; }
+  neuron input {
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    margin-top: 50%;
+    -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    background: rgba(255, 255, 255, 0.6); }
+
+/*# sourceMappingURL=index.css.map */
