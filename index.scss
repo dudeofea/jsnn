@@ -89,12 +89,12 @@ neuron {
 
 $tip-size: 10px;
 arrow {
-    margin: 30px;
+    margin: 0;
     height: 0;
     width: 100px;
     border: 1px solid $palette1;
     display: block;
-    position: relative;
+    position: absolute;
     &:after {
         display: block;
         content: " ";

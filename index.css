@@ -87,12 +87,12 @@ neuron {
     background-color: #5C80BC; }
 
 arrow {
-  margin: 30px;
+  margin: 0;
   height: 0;
   width: 100px;
   border: 1px solid #3D3B30;
   display: block;
-  position: relative; }
+  position: absolute; }
   arrow:after {
     display: block;
     content: " ";
