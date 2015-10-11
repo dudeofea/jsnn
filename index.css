@@ -37,21 +37,12 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background: -webkit-linear-gradient(0deg, #005C97, #363795);
-  /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(0deg, #005C97, #363795);
-  /* FF3.6+ */
-  background: -ms-linear-gradient(0deg, #005C97, #363795);
-  /* IE10 */
-  background: -o-linear-gradient(0deg, #005C97, #363795);
-  /* Opera 11.10+ */
-  background: linear-gradient(0deg, #005C97, #363795);
-  /* W3C */
+  background: #E9EDDE;
   overflow: hidden; }
 
 p {
   font-family: 'Bitter';
-  color: white; }
+  color: #3D3B30; }
 
 * {
   outline: 0; }
@@ -66,6 +57,7 @@ p {
   background-color: transparent; }
 
 neuron {
+  cursor: move;
   position: absolute;
   display: block;
   height: 60px;
@@ -74,11 +66,11 @@ neuron {
   -moz-border-radius: 60px;
   -ms-border-radius: 60px;
   border-radius: 60px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: #3D3B30;
+  color: #4D5061;
   text-align: center; }
   neuron input {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     padding: 0;
     border: 0;
@@ -89,6 +81,28 @@ neuron {
     -o-transform: translate(0, -50%);
     transform: translate(0, -50%);
     background: rgba(255, 255, 255, 0.3);
-    text-align: center; }
+    text-align: center;
+    font-family: 'Bitter'; }
+  neuron.highlight {
+    background-color: #5C80BC; }
+
+arrow {
+  margin: 30px;
+  height: 0;
+  width: 100px;
+  border: 1px solid #3D3B30;
+  display: block;
+  position: relative; }
+  arrow:after {
+    display: block;
+    content: " ";
+    position: absolute;
+    margin-top: -5px;
+    right: -5px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #3D3B30; }
 
 /*# sourceMappingURL=index.css.map */
