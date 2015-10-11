@@ -85,6 +85,8 @@ neuron {
     font-family: 'Bitter'; }
   neuron.highlight {
     background-color: #5C80BC; }
+  neuron.fire, neuron.highlight.fire {
+    background-color: #E7E247; }
 
 arrow {
   margin: 0;

@@ -85,6 +85,9 @@ neuron {
     &.highlight {
         background-color: $palette4;
     }
+    &.fire, &.highlight.fire{
+        background-color: $palette5;
+    }
 }
 
 $tip-size: 10px;

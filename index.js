@@ -43,13 +43,18 @@ $(window).load(function(){
 	}).on('keypress', function(e){
 		if(e.which == 110){	//N key
 			//insert neuron, bind event
-			var id = neurons.push({out: [], elem: null});
+			var id = neurons.push({out: [], elem: null, timeout: null});
 			var elem = $('<neuron id="neuron-'+id+'"><input type="text"/></neuron>');
 			$('body').append(elem);
 			neurons[id-1].elem = elem;
 		}else if(e.which == 109){	//M key
+			//create a link
 			if(cur_elem == null){ return; }
 			create_link = true;
+		}else if(e.which == 32){	//Space bar
+			//fire the selected neuron
+			if(cur_elem == null){ return; }
+			fire_neuron(cur_elem);
 		}
 	//cancel selection / start selection
 	}).on('mousedown', function(e){
@@ -104,6 +109,20 @@ $(window).load(function(){
 		arrow.width(mag);
 		arrow.rotate(angle);
 	}
+	//fire the neuron with the given id
+	var fire_neuron = function(id){
+		neurons[id-1].elem.addClass('fire');
+		clearTimeout(neurons[id-1].timeout);
+		neurons[id-1].timeout = setTimeout(function(nid){
+			neurons[nid-1].timeout = null;
+			neurons[nid-1].elem.removeClass('fire');
+		}, 1000, id);
+		for (var i = 0; i < neurons[id-1].out.length; i++) {
+			setTimeout(function(nid){
+				fire_neuron(nid)
+			}, 500, links[neurons[id-1].out[i]-1].b);	
+		}
+	};
 });
 
 //rotate function
