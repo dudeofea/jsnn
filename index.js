@@ -30,6 +30,12 @@ $(window).load(function(){
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
 			update_arrow_func(neurons[id-1].out[i]);
 		}
+		//update incoming arrow positions
+		for (var i = 0; i < links.length; i++) {
+			if(links[i].b == id){
+				update_arrow_func(i+1);
+			}
+		}
 	//end drag
 	}).on('mouseup', function(){
 		cur_offset = null;
