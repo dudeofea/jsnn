@@ -118,10 +118,19 @@ $(window).load(function(){
 			neurons[nid-1].elem.removeClass('fire');
 		}, 1000, id);
 		//randomly make a connection to another neuron
-		var r = parseInt(Math.random()*(neurons.length)*4);
-		if(r < neurons.length){
-			console.log(r);
-			create_link_func(neurons[id-1].elem, neurons[r].elem);
+		var r = parseInt(Math.random()*(neurons.length)*4) + 1;
+		if(r <= neurons.length){
+			//check if we already have it / is invalid
+			var haveit = false;
+			for (var i = 0; i < links.length; i++) {
+				if((links[i].a == id && links[i].b == r) || (links[i].a == r && links[i].b == id) || r == id){
+					haveit = true;
+				}
+			}
+			if(!haveit){
+				//add it
+				create_link_func(neurons[id-1].elem, neurons[r-1].elem);
+			}
 		}
 		//fire outgoing links
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
