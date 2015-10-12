@@ -25,7 +25,7 @@ $(window).load(function(){
 		if(cur_offset == null || cur_elem == null){ return; }
 		var id = cur_elem;
 		var elem_o = {left: cur_offset.x + e.pageX, top: cur_offset.y + e.pageY}
-		neurons[id-1].elem.offset(elem_o);
+		neurons[id-1].elem.css({top: elem_o.top+'px', left: elem_o.left+'px'});
 		neurons[id-1].offset = elem_o;
 		//update outgoing arrow position
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
@@ -96,23 +96,24 @@ $(window).load(function(){
 		var na = neurons[links[id-1].a-1].elem;
 		var nb = neurons[links[id-1].b-1].elem;
 		//get centers
-		var na_offset = na.offset();
+		var na_offset = neurons[links[id-1].a-1].offset;
 		var na_center = {left: na_offset.left + na.width() / 2, top: na_offset.top + na.height() / 2};
-		var nb_offset = nb.offset();
+		var nb_offset = neurons[links[id-1].b-1].offset;
 		var nb_center = {left: nb_offset.left + nb.width() / 2, top: nb_offset.top + nb.height() / 2};
 		var pa = na_center;
 		var pb = nb_center;
+		console.log(pa, pb);
 		//update arrow position
 		var xdiff = pb.left - pa.left;
 		var ydiff = pb.top - pa.top;
 		var angle = Math.atan2(ydiff, xdiff);
 		var mag = Math.sqrt(xdiff*xdiff+ydiff*ydiff);
 		var a_offset = {
-			left: pa.left + xdiff/2 - Math.abs((mag/2)*Math.cos(angle)),
-			top:  pa.top  + ydiff/2 - Math.abs((mag/2)*Math.sin(angle))
+			left: pa.left - (mag/2)*(1-Math.cos(angle)),
+			top:  pa.top + (mag/2)*Math.sin(angle)
 		}
 		links[id-1].offset = a_offset;
-		arrow.offset(a_offset);
+		arrow.css({top: a_offset.top+'px', left: a_offset.left+'px'});
 		arrow.width(mag);
 		arrow.rotate(angle);
 	}
@@ -156,7 +157,7 @@ $(window).load(function(){
 			var id = neurons.push({out: [], elem: null, timeout: null, offset: data.neurons[i].offset});
 			var elem = $('<neuron id="neuron-'+id+'"><input type="text"/></neuron>');
 			$('body').append(elem);
-			elem.offset(data.neurons[i].offset);
+			elem.css({top: data.neurons[i].offset.top+'px', left: data.neurons[i].offset.left+'px'});
 			neurons[id-1].elem = elem;
 		}
 		//re-init links
@@ -166,7 +167,7 @@ $(window).load(function(){
 				neurons[data.links[i].b-1].elem
 			);
 			links[links.length-1].offset = data.links[i].offset;
-			links[links.length-1].elem.offset(data.links[i].offoffset);
+			links[links.length-1].elem.css({top: data.links[i].offset.top+'px', left: data.links[i].offset.left+'px'});
 		}
 	}
 });
