@@ -80,7 +80,7 @@ $(window).load(function(){
 		//add link to array
 		var aid = parseInt(na.attr('id').replace('neuron-', ''));
 		var bid = parseInt(nb.attr('id').replace('neuron-', ''));
-		var id = links.push({elem: null, a: aid, b: bid, offset: null});
+		var id = links.push({elem: null, a: aid, b: bid, offset: null, strength: 0.1});
 		neurons[aid-1].out.push(id);
 		//add an arrow between elements
 		var arrow = $('<arrow id="arrow-'+id+'"></arrow>');
@@ -124,7 +124,7 @@ $(window).load(function(){
 		neurons[id-1].timeout = setTimeout(function(nid){
 			neurons[nid-1].timeout = null;
 			neurons[nid-1].elem.removeClass('fire');
-		}, 1000, id);
+		}, 200, id);
 		//randomly make a connection to another neuron
 		var r = parseInt(Math.random()*(neurons.length)*4) + 1;
 		if(r <= neurons.length){
@@ -144,7 +144,7 @@ $(window).load(function(){
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
 			setTimeout(function(nid){
 				fire_neuron(nid)
-			}, 500, links[neurons[id-1].out[i]-1].b);
+			}, 100, links[neurons[id-1].out[i]-1].b);
 		}
 	};
 	//load neurons if possible
