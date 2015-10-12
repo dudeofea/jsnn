@@ -68,7 +68,8 @@ neuron {
   border-radius: 60px;
   background-color: #3D3B30;
   color: #4D5061;
-  text-align: center; }
+  text-align: center;
+  z-index: 10; }
   neuron input {
     width: 80%;
     margin: 0 auto;

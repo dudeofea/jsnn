@@ -102,12 +102,11 @@ $(window).load(function(){
 		var nb_center = {left: nb_offset.left + nb.width() / 2, top: nb_offset.top + nb.height() / 2};
 		var pa = na_center;
 		var pb = nb_center;
-		console.log(pa, pb);
 		//update arrow position
 		var xdiff = pb.left - pa.left;
 		var ydiff = pb.top - pa.top;
 		var angle = Math.atan2(ydiff, xdiff);
-		var mag = Math.sqrt(xdiff*xdiff+ydiff*ydiff);
+		var mag = Math.sqrt(xdiff*xdiff+ydiff*ydiff) - 38;
 		var a_offset = {
 			left: pa.left - (mag/2)*(1-Math.cos(angle)),
 			top:  pa.top + (mag/2)*Math.sin(angle)

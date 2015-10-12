@@ -71,6 +71,7 @@ neuron {
 	background-color: $palette1;
 	color: $palette2;
 	text-align: center;
+    z-index: 10;
 	input {
 		width: 80%;
 		margin: 0 auto;
