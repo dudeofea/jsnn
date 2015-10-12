@@ -104,7 +104,6 @@ $(window).load(function(){
 			left: pa.left + xdiff/2 - Math.abs((mag/2)*Math.cos(angle)),
 			top:  pa.top  + ydiff/2 - Math.abs((mag/2)*Math.sin(angle))
 		}
-		console.log(angle, (mag/2)*Math.cos(angle));
 		arrow.offset(a_offset);
 		arrow.width(mag);
 		arrow.rotate(angle);
@@ -112,15 +111,23 @@ $(window).load(function(){
 	//fire the neuron with the given id
 	var fire_neuron = function(id){
 		neurons[id-1].elem.addClass('fire');
+		//firing timeout
 		clearTimeout(neurons[id-1].timeout);
 		neurons[id-1].timeout = setTimeout(function(nid){
 			neurons[nid-1].timeout = null;
 			neurons[nid-1].elem.removeClass('fire');
 		}, 1000, id);
+		//randomly make a connection to another neuron
+		var r = parseInt(Math.random()*(neurons.length)*4);
+		if(r < neurons.length){
+			console.log(r);
+			create_link_func(neurons[id-1].elem, neurons[r].elem);
+		}
+		//fire outgoing links
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
 			setTimeout(function(nid){
 				fire_neuron(nid)
-			}, 500, links[neurons[id-1].out[i]-1].b);	
+			}, 500, links[neurons[id-1].out[i]-1].b);
 		}
 	};
 });
