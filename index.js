@@ -26,6 +26,7 @@ $(window).load(function(){
 		var id = cur_elem;
 		var elem_o = {left: cur_offset.x + e.pageX, top: cur_offset.y + e.pageY}
 		neurons[id-1].elem.offset(elem_o);
+		neurons[id-1].offset = elem_o;
 		//update outgoing arrow position
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
 			update_arrow_func(neurons[id-1].out[i]);
@@ -43,7 +44,7 @@ $(window).load(function(){
 	}).on('keypress', function(e){
 		if(e.which == 110){	//N key
 			//insert neuron, bind event
-			var id = neurons.push({out: [], elem: null, timeout: null});
+			var id = neurons.push({out: [], elem: null, timeout: null, offset: null});
 			var elem = $('<neuron id="neuron-'+id+'"><input type="text"/></neuron>');
 			$('body').append(elem);
 			neurons[id-1].elem = elem;
@@ -67,13 +68,19 @@ $(window).load(function(){
 			create_link = false;
 			$('neuron').removeClass('highlight');
 		}
+	//save data in localstorage when closing
+	}).on('beforeunload', function(){
+		localStorage.setItem('data', JSON.stringify({
+			neurons: neurons,
+			links: links
+		}));
 	});
 	//create a link between two neurons
 	var create_link_func = function(na, nb){
 		//add link to array
 		var aid = parseInt(na.attr('id').replace('neuron-', ''));
 		var bid = parseInt(nb.attr('id').replace('neuron-', ''));
-		var id = links.push({elem: null, a: aid, b: bid});
+		var id = links.push({elem: null, a: aid, b: bid, offset: null});
 		neurons[aid-1].out.push(id);
 		//add an arrow between elements
 		var arrow = $('<arrow id="arrow-'+id+'"></arrow>');
@@ -104,6 +111,7 @@ $(window).load(function(){
 			left: pa.left + xdiff/2 - Math.abs((mag/2)*Math.cos(angle)),
 			top:  pa.top  + ydiff/2 - Math.abs((mag/2)*Math.sin(angle))
 		}
+		links[id-1].offset = a_offset;
 		arrow.offset(a_offset);
 		arrow.width(mag);
 		arrow.rotate(angle);
@@ -139,6 +147,28 @@ $(window).load(function(){
 			}, 500, links[neurons[id-1].out[i]-1].b);
 		}
 	};
+	//load neurons if possible
+	if(localStorage && localStorage.getItem('data')){
+		var data = JSON.parse(localStorage.getItem('data'));
+		console.log(data);
+		//re-init neurons
+		for (var i = 0; i < data.neurons.length; i++) {
+			var id = neurons.push({out: [], elem: null, timeout: null, offset: data.neurons[i].offset});
+			var elem = $('<neuron id="neuron-'+id+'"><input type="text"/></neuron>');
+			$('body').append(elem);
+			elem.offset(data.neurons[i].offset);
+			neurons[id-1].elem = elem;
+		}
+		//re-init links
+		for (var i = 0; i < data.links.length; i++) {
+			create_link_func(
+				neurons[data.links[i].a-1].elem,
+				neurons[data.links[i].b-1].elem
+			);
+			links[links.length-1].offset = data.links[i].offset;
+			links[links.length-1].elem.offset(data.links[i].offoffset);
+		}
+	}
 });
 
 //rotate function
