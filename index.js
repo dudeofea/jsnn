@@ -56,6 +56,24 @@ $(window).load(function(){
 			//fire the selected neuron
 			if(cur_elem == null){ return; }
 			fire_neuron(cur_elem);
+		}else if(e.which == 100){	//D key
+			//delete a neuron
+			if(cur_elem == null){ return; }
+			neurons[cur_elem-1].elem.remove();
+			neurons.splice(cur_elem-1, 1);
+			//convert link ids
+			for (var i = 0; i < links.length; i++) {
+				//remove links to / from
+				if(links[i].a == cur_elem || links[i].b == cur_elem){
+					links[i].elem.remove();
+					links.splice(i, 1);
+					i--;
+					continue;
+				}
+				//shift ids of other links
+				if(links[i].a > cur_elem){ links[i].a--; }
+				if(links[i].b > cur_elem){ links[i].b--; }
+			}
 		}
 	//cancel selection / start selection
 	}).on('mousedown', function(e){
@@ -153,6 +171,7 @@ $(window).load(function(){
 		console.log(data);
 		//re-init neurons
 		for (var i = 0; i < data.neurons.length; i++) {
+			//add new neuron to array
 			var id = neurons.push({out: [], elem: null, timeout: null, offset: data.neurons[i].offset});
 			var elem = $('<neuron id="neuron-'+id+'"><input type="text"/></neuron>');
 			$('body').append(elem);
