@@ -68,11 +68,31 @@ $(window).load(function(){
 					links[i].elem.remove();
 					links.splice(i, 1);
 					i--;
+					//go through neurons and fix id's of out
+					for (var j = 0; j < neurons.length; j++) {
+						for (var h = 0; h < neurons[j].out.length; h++) {
+							if(neurons[j].out[h] == i){
+								neurons[j].out.splice(h, 1);
+								h--;
+								continue;
+							}
+							if(neurons[j].out[h] > i + 1){
+								neurons[j].out[h] -= 1;
+							}
+						}
+					}
 					continue;
 				}
 				//shift ids of other links
-				if(links[i].a > cur_elem){ links[i].a--; }
-				if(links[i].b > cur_elem){ links[i].b--; }
+				if(links[i].a >= cur_elem){ links[i].a--; }
+				if(links[i].b >= cur_elem){ links[i].b--; }
+			}
+			//redo neuron / arrow id's in DOM
+			for (var i = 0; i < neurons.length; i++) {
+				neurons[i].elem.attr('id', 'neuron-'+(i+1));
+			}
+			for (var i = 0; i < links.length; i++) {
+				links[i].elem.attr('id', 'arrow-'+(i+1));
 			}
 		}
 	//cancel selection / start selection
