@@ -1,6 +1,7 @@
 $(window).load(function(){
 	var neurons = [];
 	var links = [];
+	var sequence_list = [];
 	var cur_offset = null;
 	var cur_elem = null;
 	var create_link = false;
@@ -94,6 +95,9 @@ $(window).load(function(){
 			for (var i = 0; i < links.length; i++) {
 				links[i].elem.attr('id', 'arrow-'+(i+1));
 			}
+		}else if (e.which == 115) {		//S key
+			if(cur_elem == null){ return; }
+			add_to_sequence(0, cur_elem);
 		}
 	//cancel selection / start selection
 	}).on('mousedown', function(e){
@@ -112,6 +116,21 @@ $(window).load(function(){
 			neurons: neurons,
 			links: links
 		}));
+	});
+	//clear sequence list
+	$('#clear').click(function(){
+		sequence_list = [];
+		$('.sequence-list').html('<li>Press S to sequence a neuron</li>');
+	});
+	//run the sequence
+	$('#run').click(function(){
+		for (var i = 0; i < sequence_list.length; i++) {
+			setTimeout(
+				fire_neuron,
+				sequence_list[i].timeout,
+				sequence_list[i].id
+			);
+		}
 	});
 	//create a link between two neurons
 	var create_link_func = function(na, nb){
@@ -185,6 +204,21 @@ $(window).load(function(){
 			}, 100, links[neurons[id-1].out[i]-1].b);
 		}
 	};
+	//add neuron to sequence
+	var add_to_sequence = function(time, id){
+		//if list is empty
+		if(sequence_list.length == 0){
+			$('.sequence-list').html('');
+		}
+		//check if element exists
+		for (var i = 0; i < sequence_list.length; i++) {
+			if(sequence_list[i].id == id){
+				return;
+			}
+		}
+		sequence_list.push({id: id, timeout: time});
+		$('.sequence-list').append('<li><time>'+time+'</time>Neuron '+id+'</li>');
+	}
 	//load neurons if possible
 	if(localStorage && localStorage.getItem('data')){
 		var data = JSON.parse(localStorage.getItem('data'));
