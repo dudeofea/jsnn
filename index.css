@@ -38,10 +38,10 @@ html, body {
   width: 100%;
   height: 100%;
   background: #FFFCFF;
-  overflow: hidden; }
+  overflow: hidden;
+  font-family: 'Bitter'; }
 
 p {
-  font-family: 'Bitter';
   color: #50514F; }
 
 * {
@@ -107,5 +107,43 @@ arrow {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-left: 10px solid #50514F; }
+
+.side-menu {
+  height: 100%;
+  width: 300px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  background-color: #50514F; }
+  .side-menu .sequence-buttons {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center; }
+  .side-menu .sequence-list time {
+    display: inline-block;
+    border: 3px solid #FFFCFF;
+    height: 40px;
+    line-height: 41px;
+    width: 40px;
+    border-radius: 25px;
+    text-align: center;
+    margin-right: 20px; }
+  .side-menu .sequence-list li {
+    padding: 20px;
+    color: #FFFCFF;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.5); }
+
+.button {
+  display: inline;
+  height: 20px;
+  padding: 3px 10px 2px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 7px;
+  margin-left: 20px; }
+  .button:first-child {
+    margin: 0; }
 
 /*# sourceMappingURL=index.css.map */

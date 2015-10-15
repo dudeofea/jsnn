@@ -47,10 +47,10 @@ html, body {
 	height: 100%;
 	background: $palette3;
 	overflow: hidden;
+    font-family: 'Bitter';
 }
 
 p {
-	font-family: 'Bitter';
 	color: $palette1;
 }
 
@@ -111,5 +111,52 @@ arrow {
         border-bottom: -5px+$tip-size solid transparent;
 
         border-left: $tip-size solid $palette1;
+    }
+}
+
+.side-menu {
+    height: 100%;
+    width: 300px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    background-color: $palette1;
+    .sequence-buttons {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    .sequence-list {
+        $time-size: 40px;
+        time {
+            display: inline-block;
+            border: 3px solid $palette3;
+            height: $time-size;
+            line-height: $time-size+1px;
+            width: $time-size;
+            border-radius: $time-size/2 + 5px;
+            text-align: center;
+            margin-right: 20px;
+        }
+        li {
+            padding: 20px;
+            color: $palette3;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            background-color: rgba(0,0,0,0.5);
+        }
+    }
+}
+
+.button {
+    display: inline;
+    height: 20px;
+    padding: 3px 10px 2px;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 7px;
+    margin-left: 20px;
+    &:first-child {
+        margin: 0;
     }
 }
