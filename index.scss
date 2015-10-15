@@ -128,29 +128,39 @@ arrow {
         text-align: center;
     }
     .sequence-list {
-        $time-size: 40px;
-        time {
+        input.time {
             display: inline-block;
-            border: 3px solid $palette3;
-            height: $time-size;
-            line-height: $time-size+1px;
-            width: $time-size;
-            border-radius: $time-size/2 + 5px;
+            border: 0;
+            height: 22px;
+            width: 60px;
             text-align: center;
-            position: absolute;
             left: 20px;
+            position: absolute;
+            top: 50%;
+            @include transform(translateY(-50%));
+            @include border-radius(15px);
+            background-color: darken($palette2, 20);
+            color: $palette3;
+            font-family: 'Bitter';
+            font-size: 14px;
         }
         li {
+            position: relative;
             padding: 15px;
+            padding-left: 100px;
             color: $palette3;
             border-top: 1px solid black;
             background-color: rgba(0,0,0,0.5);
             height: 48px;
             line-height: 48px;
-            text-align: center;
+            text-align: left;
             &:last-child {
                 border-bottom: 1px solid black;
             }
+        }
+        li.text {
+            padding-left: 15px;
+            text-align: center;
         }
     }
 }

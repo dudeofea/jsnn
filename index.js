@@ -120,7 +120,7 @@ $(window).load(function(){
 	//clear sequence list
 	$('#clear').click(function(){
 		sequence_list = [];
-		$('.sequence-list').html('<li>Press S to sequence a neuron</li>');
+		$('.sequence-list').html('<li class="text">Press S to sequence a neuron</li>');
 	});
 	//run the sequence
 	$('#run').click(function(){
@@ -217,7 +217,7 @@ $(window).load(function(){
 			}
 		}
 		sequence_list.push({id: id, timeout: time});
-		$('.sequence-list').append('<li><time>'+time+'</time>Neuron '+id+'</li>');
+		$('.sequence-list').append('<li><input type="text" class="time" value="'+time+'">Neuron '+cur_elem+'</li>');
 	}
 	//load neurons if possible
 	if(localStorage && localStorage.getItem('data')){

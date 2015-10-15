@@ -120,26 +120,43 @@ arrow {
     height: 60px;
     line-height: 60px;
     text-align: center; }
-  .side-menu .sequence-list time {
+  .side-menu .sequence-list input.time {
     display: inline-block;
-    border: 3px solid #FFFCFF;
-    height: 40px;
-    line-height: 41px;
-    width: 40px;
-    border-radius: 25px;
+    border: 0;
+    height: 22px;
+    width: 60px;
     text-align: center;
+    left: 20px;
     position: absolute;
-    left: 20px; }
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #1897c8;
+    color: #FFFCFF;
+    font-family: 'Bitter';
+    font-size: 14px; }
   .side-menu .sequence-list li {
+    position: relative;
     padding: 15px;
+    padding-left: 100px;
     color: #FFFCFF;
     border-top: 1px solid black;
     background-color: rgba(0, 0, 0, 0.5);
     height: 48px;
     line-height: 48px;
-    text-align: center; }
+    text-align: left; }
     .side-menu .sequence-list li:last-child {
       border-bottom: 1px solid black; }
+  .side-menu .sequence-list li.text {
+    padding-left: 15px;
+    text-align: center; }
 
 .button {
   cursor: pointer;
