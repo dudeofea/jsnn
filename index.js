@@ -212,7 +212,7 @@ $(window).load(function(){
 		}
 		//check if element exists
 		for (var i = 0; i < sequence_list.length; i++) {
-			if(sequence_list[i].id == id){
+			if(sequence_list[i].id == id && sequence_list[i].timeout == time){
 				return;
 			}
 		}
