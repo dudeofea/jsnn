@@ -137,13 +137,25 @@ arrow {
     background-color: rgba(0, 0, 0, 0.5); }
 
 .button {
+  cursor: pointer;
   display: inline;
   height: 20px;
   padding: 3px 10px 2px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  background-color: #FFFCFF;
   border-radius: 7px;
   margin-left: 20px; }
+  .button:hover {
+    background-color: #F06449;
+    border-color: #c32d10; }
+  .button:active {
+    background-color: #ec3c1a;
+    border: none; }
   .button:first-child {
-    margin: 0; }
+    margin-left: 0; }
+  .button i {
+    font-size: 12px;
+    vertical-align: middle;
+    margin-right: 2px; }
 
 /*# sourceMappingURL=index.css.map */

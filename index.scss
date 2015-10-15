@@ -150,13 +150,28 @@ arrow {
 }
 
 .button {
+    cursor: pointer;
     display: inline;
     height: 20px;
     padding: 3px 10px 2px;
-    border: 1px solid rgba(255,255,255,0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    background-color: $palette3;
     border-radius: 7px;
     margin-left: 20px;
+    &:hover {
+        background-color: $palette4;
+        border-color: darken($palette4, 20);
+    }
+    &:active {
+        background-color: darken($palette4, 10);
+        border: none;
+    }
     &:first-child {
-        margin: 0;
+        margin-left: 0;
+    }
+    i {
+        font-size: 12px;
+        vertical-align: middle;
+        margin-right: 2px;
     }
 }
