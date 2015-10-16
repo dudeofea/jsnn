@@ -217,7 +217,28 @@ $(window).load(function(){
 			}
 		}
 		sequence_list.push({id: id, timeout: time});
-		$('.sequence-list').append('<li><input type="text" class="time" value="'+time+'">Neuron '+cur_elem+'</li>');
+		update_sequence_list();
+	}
+	//update the list when a new element is inserted / changed
+	var update_sequence_list = function(){
+		//resort list and reinsert into DOM
+		sequence_list.sort(function(a, b){
+			return a.timeout - b.timeout;
+		});
+		var str = "";
+		for (var i = 0; i < sequence_list.length; i++) {
+			sequence_list[i]
+			str += '<li><input type="text" class="time" value="'+sequence_list[i].timeout+'">Neuron '+sequence_list[i].id+'</li>';
+		}
+		$('.sequence-list input.time').off('change');
+		$('.sequence-list').html(str);
+		//re-update when changing timeout values
+		$('.sequence-list input.time').on('change', function(){
+			var index = $(this).parent().index();
+			var val = parseInt($(this).val()) || 0;
+			sequence_list[index].timeout = val;
+			update_sequence_list();
+		});
 	}
 	//load neurons if possible
 	if(localStorage && localStorage.getItem('data')){
