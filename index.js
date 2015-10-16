@@ -114,13 +114,14 @@ $(window).load(function(){
 	}).on('beforeunload', function(){
 		localStorage.setItem('data', JSON.stringify({
 			neurons: neurons,
-			links: links
+			links: links,
+			sequence_list: sequence_list
 		}));
 	});
 	//clear sequence list
 	$('#clear').click(function(){
 		sequence_list = [];
-		$('.sequence-list').html('<li class="text">Press S to sequence a neuron</li>');
+		update_sequence_list();
 	});
 	//run the sequence
 	$('#run').click(function(){
@@ -221,6 +222,11 @@ $(window).load(function(){
 	}
 	//update the list when a new element is inserted / changed
 	var update_sequence_list = function(){
+		//show message when empty
+		if(sequence_list.length == 0){
+			$('.sequence-list').html('<li class="text">Press S to sequence a neuron</li>');
+			return;
+		}
 		//resort list and reinsert into DOM
 		sequence_list.sort(function(a, b){
 			return a.timeout - b.timeout;
@@ -262,6 +268,12 @@ $(window).load(function(){
 			links[links.length-1].offset = data.links[i].offset;
 			links[links.length-1].elem.css({top: data.links[i].offset.top+'px', left: data.links[i].offset.left+'px'});
 		}
+		//re-init sequence
+		sequence_list = data.sequence_list;
+		if(sequence_list == null){
+			sequence_list = [];
+		}
+		update_sequence_list();
 	}
 });
 
