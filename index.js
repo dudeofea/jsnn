@@ -175,14 +175,24 @@ $(window).load(function(){
 		arrow.rotate(angle);
 	}
 	//fire the neuron with the given id
+	var fire_start_time = 100;
+	var fire_stop_time = 200;
+	var refresh_time = 50;
 	var fire_neuron = function(id){
+		//if not ready, don't fire
+		if(neurons[id-1].timeout != null){
+			return;
+		}
+		//fire the neuron
 		neurons[id-1].elem.addClass('fire');
 		//firing timeout
 		clearTimeout(neurons[id-1].timeout);
 		neurons[id-1].timeout = setTimeout(function(nid){
-			neurons[nid-1].timeout = null;
+			setTimeout(function(nnid){
+				neurons[nnid-1].timeout = null;
+			}, refresh_time, nid);
 			neurons[nid-1].elem.removeClass('fire');
-		}, 200, id);
+		}, fire_stop_time, id);
 		//randomly make a connection to another neuron
 		var r = parseInt(Math.random()*(neurons.length)*4) + 1;
 		if(r <= neurons.length){
@@ -202,7 +212,7 @@ $(window).load(function(){
 		for (var i = 0; i < neurons[id-1].out.length; i++) {
 			setTimeout(function(nid){
 				fire_neuron(nid)
-			}, 100, links[neurons[id-1].out[i]-1].b);
+			}, fire_start_time, links[neurons[id-1].out[i]-1].b);
 		}
 	};
 	//add neuron to sequence
