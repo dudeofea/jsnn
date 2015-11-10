@@ -191,3 +191,23 @@ arrow {
         margin-right: 2px;
     }
 }
+
+firing-radius {
+    transition: 1s linear height, 1s linear width;
+    display: block;
+    background-color: transparent;
+    border: 1px solid rgba($palette2, 0.5);
+    height: 0px;
+    width: 0px;
+    @include border-radius(0px);
+    top: 0;
+    left: 0;
+    position: absolute;
+    @include transform(translate(-50%, -50%));
+    &.fire {
+        height: 100px;
+        width: 100px;
+        border-width: 20px;
+        @include border-radius(100px);
+    }
+}

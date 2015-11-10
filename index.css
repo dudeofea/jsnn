@@ -180,4 +180,32 @@ arrow {
     vertical-align: middle;
     margin-right: 2px; }
 
+firing-radius {
+  transition: 1s linear height, 1s linear width;
+  display: block;
+  background-color: transparent;
+  border: 1px solid rgba(91, 195, 235, 0.5);
+  height: 0px;
+  width: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  border-radius: 0px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+  firing-radius.fire {
+    height: 100px;
+    width: 100px;
+    border-width: 20px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    border-radius: 100px; }
+
 /*# sourceMappingURL=index.css.map */

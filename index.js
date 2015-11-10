@@ -185,6 +185,17 @@ $(window).load(function(){
 		}
 		//fire the neuron
 		neurons[id-1].elem.addClass('fire');
+		//show firing radius
+		var radius_elem = $('<firing-radius></firing-radius>');
+		$('body').append(radius_elem);
+		radius_elem.css({top: (neurons[id-1].offset.top+30)+'px', left: (neurons[id-1].offset.left+30)+'px'});
+		//trigger the radius, then hide
+		setTimeout(function(r){
+			r.addClass('fire');
+		}, 0, radius_elem);
+		setTimeout(function(r){
+			r.remove();
+		}, 1000, radius_elem);
 		//firing timeout
 		clearTimeout(neurons[id-1].timeout);
 		neurons[id-1].timeout = setTimeout(function(nid){
