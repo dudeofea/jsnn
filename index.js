@@ -183,6 +183,14 @@ $(window).load(function(){
 		if(neurons[id-1].timeout != null){
 			return;
 		}
+		//firing timeout
+		clearTimeout(neurons[id-1].timeout);
+		neurons[id-1].timeout = setTimeout(function(nid){
+			setTimeout(function(nnid){
+				neurons[nnid-1].timeout = null;
+			}, refresh_time, nid);
+			neurons[nid-1].elem.removeClass('fire');
+		}, fire_stop_time, id);
 		//fire the neuron
 		neurons[id-1].elem.addClass('fire');
 		//show firing radius
@@ -192,18 +200,10 @@ $(window).load(function(){
 		//trigger the radius, then hide
 		setTimeout(function(r){
 			r.addClass('fire');
-		}, 0, radius_elem);
+		}, fire_start_time, radius_elem);
 		setTimeout(function(r){
 			r.remove();
 		}, 1000, radius_elem);
-		//firing timeout
-		clearTimeout(neurons[id-1].timeout);
-		neurons[id-1].timeout = setTimeout(function(nid){
-			setTimeout(function(nnid){
-				neurons[nnid-1].timeout = null;
-			}, refresh_time, nid);
-			neurons[nid-1].elem.removeClass('fire');
-		}, fire_stop_time, id);
 		//randomly make a connection to another neuron
 		var r = parseInt(Math.random()*(neurons.length)*4) + 1;
 		if(r <= neurons.length){

@@ -205,9 +205,9 @@ firing-radius {
     position: absolute;
     @include transform(translate(-50%, -50%));
     &.fire {
-        height: 100px;
-        width: 100px;
-        border-width: 20px;
-        @include border-radius(100px);
+        height: 600px;
+        width: 600px;
+        border-width: 30px;
+        @include border-radius(600px);
     }
 }

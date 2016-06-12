@@ -200,12 +200,12 @@ firing-radius {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
   firing-radius.fire {
-    height: 100px;
-    width: 100px;
-    border-width: 20px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -ms-border-radius: 100px;
-    border-radius: 100px; }
+    height: 600px;
+    width: 600px;
+    border-width: 30px;
+    -webkit-border-radius: 600px;
+    -moz-border-radius: 600px;
+    -ms-border-radius: 600px;
+    border-radius: 600px; }
 
 /*# sourceMappingURL=index.css.map */
